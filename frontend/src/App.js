@@ -15,6 +15,8 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DownloadIcon from '@mui/icons-material/Download';
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
 const VisuallyHiddenInput = styled('input')`
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
@@ -53,7 +55,7 @@ function App() {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:3001/api/convert', formData, {
+      const response = await axios.post(`${API_URL}/api/convert`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
