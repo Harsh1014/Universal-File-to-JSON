@@ -179,6 +179,13 @@ function App() {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
+      // Check file size (50MB = 50 * 1024 * 1024 bytes)
+      const maxSize = 50 * 1024 * 1024;
+      if (selectedFile.size > maxSize) {
+        setError('File size exceeds 50MB limit');
+        setFile(null);
+        return;
+      }
       setFile(selectedFile);
       setJsonData(null);
     }
